@@ -1,0 +1,73 @@
+1. "Tell me about this project"
+
+"I built an AI Chat Interface called AICHAT using React and Vite. It connects to the Groq API which runs the Llama 3 model. The app lets users have real conversations with an AI, and I built features like a word-by-word streaming effect, markdown rendering, typing indicators, and suggested prompts — all without using any external UI libraries."
+
+
+2. "What tech stack did you use?"
+
+"I used React 18 for the UI, Vite as the bundler, and plain CSS with CSS variables for styling. For the AI, I used the Groq API with the Llama 3.3 70B model. I kept it library-free on purpose — no Redux, no Tailwind, no axios — so I could show I understand the fundamentals."
+
+
+3. "Explain your folder structure"
+
+"I followed a clean component-based structure:
+
+useChat.js is a custom hook that handles all the logic — API calls, state, streaming
+Each component like Message, Sidebar, ChatInput has its own JSX and CSS file
+All content and config is separated so it's easy to maintain
+
+This separation of concerns makes the code easy to read, test, and scale."
+
+
+4. "What is a custom hook and why did you use one?"
+
+"A custom hook is a JavaScript function that starts with use and can use React hooks inside it. I created useChat to separate all the chat logic — API calls, message state, loading state — away from the UI components. This keeps components clean and focused only on rendering. It also makes the logic reusable — if I wanted to add a second chat window, I'd just call useChat() again."
+
+
+5. "How does the streaming/typewriter effect work?"
+
+"When the API responds, it gives me the full text at once. I then split that text into individual words and reveal them one by one using a loop with a small setTimeout delay between each word. I update React state on every word, which triggers a re-render and creates the typewriter effect. It makes the app feel much more alive and interactive."
+
+
+6. "How does the API call work?"
+
+"I send a POST request to the Groq API endpoint with the full conversation history as an array of messages — each with a role of either user or assistant. This gives the AI context so it remembers previous messages. The API returns the AI's reply, which I then stream into the UI word by word."
+
+
+7. "How did you manage state?"
+
+"I used React's built-in useState for four pieces of state:
+
+messages — the full conversation array
+input — what the user is typing
+loading — shows the typing indicator while waiting for the API
+streaming — shows the blinking cursor while words are appearing
+
+I used useCallback on the sendMessage function to prevent unnecessary re-renders."
+
+
+8. "What is an API key and how did you store it safely?"
+
+"An API key is a secret password that authenticates your app with a third-party service. I stored it in a .env file using Vite's environment variable system — prefixed with VITE_ so Vite exposes it to the browser. The .env file is added to .gitignore so it never gets pushed to GitHub and the key stays private."
+
+
+9. "What challenges did you face?"
+
+"A few interesting ones:
+
+Model deprecation — the Groq model I was using got decommissioned, so I had to update to a newer model. This taught me to always check API docs for updates.
+Region restrictions — Gemini's free tier didn't work in my region, so I switched to Groq which has no restrictions. This taught me to have fallback options.
+Streaming UX — getting the typewriter effect to feel smooth required tuning the delay between words so it feels natural, not too fast or too slow."
+
+
+
+10. "How would you improve this project?"
+
+"A few things I'd add with more time:
+
+Real streaming using the Groq streaming API instead of simulating it word by word
+Local storage to persist chat history between page refreshes
+Multiple conversations in the sidebar like ChatGPT
+Copy button on code blocks
+Mobile responsive sidebar with a hamburger toggle
+Unit tests for the useChat hook using React Testing Library"
