@@ -189,8 +189,8 @@ All colors are CSS variables in `src/styles/global.css`:
 
 - 📧 Kenil18042002@gmail.com
 - 📍 Nashik, Maharashtra
-- 💼 LinkedIn: linkedin.com/in/yourusername
-- 🐙 GitHub: github.com/yourusername
+- 💼 LinkedIn: linkedin.com/in/kenil-daslaniya-44b876324
+- 🐙 GitHub: github.com/kenil2425
 
 ---
 
